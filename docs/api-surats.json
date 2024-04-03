@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Surat Api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/"
+    }
+  ],
+  "paths": {
+    "/api/surats": {
+      "get": {
+        "description": "Mendapatkan semua surat",
+        "responses": {
+          "200": {
+            "description": "Daftar surat berhasil ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "nomor": { "type": "integer" },
+                      "nama_surat": { "type": "string" },
+                      "nama_inggris": { "type": "string" },
+                      "nama_latin": { "type": "string" },
+                      "jumlah_ayat": { "type": "integer" },
+                      "tempat_turun": { "type": "string" },
+                      "arti_inggris": { "type": "string" },
+                      "arti": { "type": "string" },
+                      "deskripsi": { "type": "string" },
+                      "audio_satu": { "type": "string" },
+                      "audio_dua": { "type": "string" },
+                      "audio_tiga": { "type": "string" },
+                      "audio_empat": { "type": "string" },
+                      "audio_lima": { "type": "string" },
+                      "slug": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example1": {
+                "value": [
+                  {
+                    "id": 1,
+                    "nomor": 1,
+                    "nama_surat": "Al-Fatihah",
+                    "nama_inggris": "The Opening",
+                    "nama_latin": "Al-Fatihah",
+                    "jumlah_ayat": 7,
+                    "tempat_turun": "Makkah",
+                    "arti_inggris": "The Opening",
+                    "arti": "Pembukaan",
+                    "deskripsi": "Surat pembuka dalam Al-Qur'an",
+                    "audio_satu": "url_audio1",
+                    "audio_dua": "url_audio2",
+                    "audio_tiga": "url_audio3",
+                    "audio_empat": "url_audio4",
+                    "audio_lima": "url_audio5",
+                    "slug": "al-fatihah"
+                  },
+                  {
+                    "id": 2,
+                    "nomor": 2,
+                    "nama_surat": "Al-Baqarah",
+                    "nama_inggris": "The Cow",
+                    "nama_latin": "Al-Baqarah",
+                    "jumlah_ayat": 286,
+                    "tempat_turun": "Madinah",
+                    "arti_inggris": "The Cow",
+                    "arti": "Sapi Betina",
+                    "deskripsi": "Surat kedua dalam Al-Qur'an",
+                    "audio_satu": "url_audio1",
+                    "audio_dua": "url_audio2",
+                    "audio_tiga": "url_audio3",
+                    "audio_empat": "url_audio4",
+                    "audio_lima": "url_audio5",
+                    "slug": "al-baqarah"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/surats/{slug}": {
+      "get": {
+        "description": "Mendapatkan detail surat berdasarkan slug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Slug surat",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail surat berhasil ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "nomor": { "type": "integer" },
+                    "nama_surat": { "type": "string" },
+                    "nama_inggris": { "type": "string" },
+                    "nama_latin": { "type": "string" },
+                    "jumlah_ayat": { "type": "integer" },
+                    "tempat_turun": { "type": "string" },
+                    "arti_inggris": { "type": "string" },
+                    "arti": { "type": "string" },
+                    "deskripsi": { "type": "string" },
+                    "audio_satu": { "type": "string" },
+                    "audio_dua": { "type": "string" },
+                    "audio_tiga": { "type": "string" },
+                    "audio_empat": { "type": "string" },
+                    "audio_lima": { "type": "string" },
+                    "slug": { "type": "string" },
+                    "ayatSurats": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "surat_id": { "type": "integer" },
+                          "nomor_ayat": { "type": "integer" },
+                          "teks_arab": { "type": "string" },
+                          "teks_indonesia": { "type": "string" },
+                          "teks_latin": { "type": "string" },
+                          "teks_inggris": { "type": "string" },
+                          "tafsir": { "type": "string" },
+                          "audio_satu": { "type": "string" },
+                          "audio_dua": { "type": "string" },
+                          "audio_tiga": { "type": "string" },
+                          "audio_empat": { "type": "string" },
+                          "audio_lima": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example1": {
+                "value": {
+                  "id": 1,
+                  "nomor": 1,
+                  "nama_surat": "Al-Fatihah",
+                  "nama_inggris": "The Opening",
+                  "nama_latin": "Al-Fatihah",
+                  "jumlah_ayat": 7,
+                  "tempat_turun": "Makkah",
+                  "arti_inggris": "The Opening",
+                  "arti": "Pembukaan",
+                  "deskripsi": "Surat pembuka dalam Al-Qur'an",
+                  "audio_satu": "url_audio1",
+                  "audio_dua": "url_audio2",
+                  "audio_tiga": "url_audio3",
+                  "audio_empat": "url_audio4",
+                  "audio_lima": "url_audio5",
+                  "slug": "al-fatihah",
+                  "ayatSurats": [
+                    {
+                      "id": 1,
+                      "surat_id": 1,
+                      "nomor_ayat": 1,
+                      "teks_arab": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+                      "teks_indonesia": "Segala puji bagi Allah, Tuhan semesta alam.",
+                      "teks_latin": "Alhamdu lillahi rabbil 'alamin",
+                      "teks_inggris": "Praise be to Allah, the Lord of all the worlds.",
+                      "tafsir": "Ini adalah ayat yang berisi puji-pujian dan penjelasan tentang Allah sebagai Pencipta, Pemilik, dan Pengatur seluruh alam semesta.",
+                      "audio_satu": "url_audio_ayat_1",
+                      "audio_dua": "url_audio_ayat_2",
+                      "audio_tiga": "url_audio_ayat_3",
+                      "audio_empat": "url_audio_ayat_4",
+                      "audio_lima": "url_audio_ayat_5"
+                    },
+                    {
+                      "id": 2,
+                      "surat_id": 1,
+                      "nomor_ayat": 2,
+                      "teks_arab": "الرَّحْمَٰنِ الرَّحِيمِ",
+                      "teks_indonesia": "Yang Maha Pengasih, Maha Penyayang.",
+                      "teks_latin": "Arrahmani arrahim",
+                      "teks_inggris": "The Most Gracious, the Most Merciful.",
+                      "tafsir": "Ini adalah ayat yang mengungkapkan sifat Allah yang penuh rahmat dan kasih sayang kepada seluruh makhluk-Nya.",
+                      "audio_satu": "url_audio_ayat_1",
+                      "audio_dua": "url_audio_ayat_2",
+                      "audio_tiga": "url_audio_ayat_3",
+                      "audio_empat": "url_audio_ayat_4",
+                      "audio_lima": "url_audio_ayat_5"
+                    }
+      
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Surat tidak ditemukan"
+          }
+        }
+      }
+    },
+    "/api/save-ayat-surats": {
+      "post": {
+        "summary": "Menyimpan ayat surat yang dipilih oleh pengguna",
+        "description": "Endpoint ini digunakan untuk menyimpan ayat surat yang dipilih oleh pengguna setelah login. Pengguna harus menyediakan ID pengguna (user_id) dan ID ayat surat (ayat_surat_id) yang ingin disimpan. Endpoint ini memerlukan autentikasi.",
+        "tags": ["Ayat Surat"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": { "type": "integer", "description": "ID pengguna yang menyimpan ayat surat" },
+                  "ayat_surat_id": { "type": "integer", "description": "ID ayat surat yang ingin disimpan" }
+                },
+                "required": ["user_id", "ayat_surat_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ayat surat berhasil disimpan",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Ayat surat berhasil disimpan"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Pengguna harus login terlebih dahulu"
+          },
+          "400": {
+            "description": "Bad Request: Parameter tidak valid",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Parameter tidak valid"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    
+  }
+}

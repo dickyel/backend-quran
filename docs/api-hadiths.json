@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Hadith Api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/"
+    }
+  ],
+  "paths": {
+    "/api/hadiths": {
+      "get": {
+        "description": "Mendapatkan semua hadith",
+        "responses": {
+          "200": {
+            "description": "Daftar hadith berhasil ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name_hadith": { "type": "string" },
+                      "total_hadith": { "type": "integer" },
+                      "slug": { "type": "string" }
+                   
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example1": {
+                "value": [
+                  {
+                    "id": 1 ,
+                    "name_hadith": "Ahmad",
+                    "total_hadith": "4000",
+                    "slug": "ahmad"
+                 
+                  },
+                  {
+                    "id": 2 ,
+                    "name_hadith": "Nasai",
+                    "total_hadith": "4000",
+                    "slug": "nasai"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hadiths/{slug}": {
+      "get": {
+        "description": "Mendapatkan detail hadith berdasarkan slug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Slug hadith",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail hadith berhasil ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer"} , 
+                    "name_hadith": { "type": "string" },
+                    "total_hadith": { "type": "integer" },
+                    "slug": { "type": "string" },
+                    "ayatSurats": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "hadith_id": { "type": "integer" },
+                          "number": { "type": "integer" },
+                          "arab": { "type": "string" },
+                          "indonesia": { "type": "string" }
+                          
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example1": {
+                "value": {
+                  "id": 1,
+                  "name_hadith": "An-nasai",
+                  "total_hadith": "4000",
+                  "slug": "an-nasai",                  
+                  "ayatHadiths": [
+                    {
+                      "id": 1,
+                      "hadith_id": 1,
+                      "number": 1,
+                      "arab": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+                      "indonesia": "Segala puji bagi Allah, Tuhan semesta alam."
+                    },
+                    {
+                      "id": 2,
+                      "hadith_id": 1,
+                      "number": 2,
+                      "arab": "الرَّحْمَٰنِ الرَّحِيمِ",
+                      "indonesia": "Yang Maha Pengasih, Maha Penyayang."
+                
+                    }
+      
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Surat tidak ditemukan"
+          }
+        }
+      }
+    },
+    "/api/save-ayat-hadiths": {
+      "post": {
+        "summary": "Menyimpan ayat surat yang dipilih oleh pengguna",
+        "description": "Endpoint ini digunakan untuk menyimpan ayat hadith yang dipilih oleh pengguna setelah login. Pengguna harus menyediakan ID pengguna (user_id) dan ID ayat surat (ayat_surat_id) yang ingin disimpan. Endpoint ini memerlukan autentikasi.",
+        "tags": ["Ayat Hadith"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": { "type": "integer", "description": "ID pengguna yang menyimpan ayat surat" },
+                  "ayat_hadith_id": { "type": "integer", "description": "ID ayat hadith yang ingin disimpan" }
+                },
+                "required": ["user_id", "ayat_hadith_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ayat surat berhasil disimpan",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Ayat surat berhasil disimpan"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Pengguna harus login terlebih dahulu"
+          },
+          "400": {
+            "description": "Bad Request: Parameter tidak valid",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Parameter tidak valid"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    
+  }
+}

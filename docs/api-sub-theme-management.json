@@ -1,0 +1,251 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+      "title":"Sub Theme api",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"http://localhost:8000"}
+    ],
+    "paths": {
+        "/api/subthemas": {
+            "post": {
+                "description": "Create new sub theme",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new sub theme",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "subtema": {
+                                        "type": "string"
+                                    }
+                                  
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create sub theme ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "subtema": {
+                                                    "type": "string"
+                                                }
+                                             
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Search sub tema",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "subtema",
+                        "in": "query"
+                    }
+                  
+                  
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success search subtema",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number"
+                                                    },
+                                                    "subtema": {
+                                                        "type": "string"
+                                                    }
+                                                
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/subthemas/{id}": {
+            "put": {
+                "description": "Update sub tema",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update sub tema",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "subtema": {
+                                        "type": "string"
+                                    }
+                                 
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update subtema",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "subtema": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Get sub tema",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get sub tema",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "subtema": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove subtema",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete subtema",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }

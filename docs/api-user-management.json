@@ -1,0 +1,304 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+      "title":"User management api",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"http://localhost:8000"}
+    ],
+    "paths": {
+        "/api/users": {
+            "post": {
+                "description": "Create new user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "password": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Search user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "name": "role",
+                        "in": "query"
+                    }
+                  
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success search users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "password": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "role": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "put": {
+                "description": "Update users",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "password": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Get user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "password": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
