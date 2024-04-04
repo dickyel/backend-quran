@@ -34,4 +34,10 @@ class ContentTheme extends Model
     {
         return $this->belongsTo(SubsubTheme::class);
     }
+
+
+    public function contentThemes()
+    {
+        return $this->hasMany(ContentTheme::class);
+    }
 }

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaveThema extends Model
+class SaveContentTheme extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'thema_id',
+        'content_thema_id',
      
     ];
 
@@ -21,9 +21,9 @@ class SaveThema extends Model
 
 
     //thema
-    public function thema()
+    public function contentTheme()
     {
-        return $this->belongsTo(Thema::class);
+        return $this->belongsTo(ContentTheme::class);
     }
 
 }

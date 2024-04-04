@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('save_themas', function (Blueprint $table) {
+        Schema::create('save_themes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Kolom ini dapat dihubungkan dengan tabel pengguna (jika diperlukan)
-            $table->foreignId('content_thema_id')->constrained('themas')->onDelete('cascade');
+            $table->foreignId('content_thema_id')->constrained('themes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('save_themas');
+        Schema::dropIfExists('save_themes');
     }
 };

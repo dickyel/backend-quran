@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/search-ayat-surats', [SuratController::class, 'searchAyatSurat']); //belum
     Route::delete('/delete-saved-ayat-surats/{id}', [SuratController::class, 'destroySavedAyatSurat']); //udh diuji
 
+    Route::post('/save-content-themes', [SaveContentThemeController::class, 'saveContentTheme']); //udah diuji
   
     Route::post('/save-ayat-hadiths', [HadithController::class, 'saveAyatHadith']); //udah diuji
     Route::post('/search-ayat-hadiths', [HadithController::class, 'searchAyatHadith']); //belum
